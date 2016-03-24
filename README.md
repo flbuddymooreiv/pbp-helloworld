@@ -1,26 +1,30 @@
-This is a "hello world" for the Python-Bottle-PostgreSQL (PBP) design pattern.
-This is not a globally scaleable distributed next-best-thing
+This is a "hello world" for the Python-Bottle-PostgreSQL (**PBP**) design pattern.
+
+This is not a globally scaleable distributed next-best-thing... Yet.
+
 This is just an evolving reference implementation of an architecture that avoids cultural lock-in (Django, RoR, meteor, etc.).
 
-Features:
-    Small
-    Scaleable 
-    Mature libraries 
-    Portable 
-    Multi-Threaded
-    Long Poll Push Notifications
+## Features:
 
-TODO/Known Issues:
-    Replicate the model client-side for more sensible client behavior
-    Make the web interface asynchronous with uwsgi wait_fd_read
-    Make the database interface asynchronous/scale better:
-        * Use fewer database connections and mux them similar to the way the
-          browser muxes one connection for its notify channel to the server
+* Small
+* Scaleable 
+* Mature dependencies 
+* Portable
+* Multi-Threaded
+* Long Poll Push Notifications
+
+## TODO/Known Issues:
+
+* Replicate the model client-side for more sensible client behavior
+* Make the web interface asynchronous with uwsgi wait_fd_read
+* Make the database interface asynchronous/scale better:
+    * Use fewer database connections and mux them similar to the way the browser muxes one connection for its notify channel to the server
 
 This configuration is most strongly tested on Debian 8. It is highly
 recommended that be the distribution to use.
 
-Install:
+## Install Dependencies:
+
     sudo apt-get update
     sudo apt-get install git
     sudo apt-get install postgresql
@@ -30,7 +34,8 @@ Install:
     sudo apt-get install uwsgi
     sudo apt-get install uwsgi-plugin-python3
 
-Configure:
+## Configure:
+
     * /etc/hosts:
         127.0.0.1        thehostname localhost
         1.2.3.4          thehostname.domain.com
@@ -57,10 +62,12 @@ Configure:
     * Reboot:
         sudo shutdown -r now
 
-Initializing the Database
+## Initializing the Database
+
     ./sql/reinitdb.sh helloworld
 
-Running the Site
+## Running the Site
+
     To run threaded:
         PYTHONPATH=. uwsgi \
             --plugins python34,ugreen -w run:app --socket :8888 \
