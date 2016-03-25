@@ -1,4 +1,4 @@
-This is a "hello world" for the Python-Bottle-PostgreSQL (**PBP**) design pattern.
+This is a [hello world](https://en.wikipedia.org/wiki/%22Hello,_World!%22_program) for the Python-Bottle-PostgreSQL (**PBP**) design pattern.
 
 This is not a globally scaleable distributed next-best-thing... Yet.
 
