@@ -2,9 +2,11 @@ This is a [hello world](https://en.wikipedia.org/wiki/%22Hello,_World!%22_progra
 
 This is not a globally scaleable distributed next-best-thing... Yet.
 
-This is just an evolving reference implementation of an architecture that avoids cultural lock-in (Django, RoR, meteor, etc.).
+By setting up this project, you will be able to insert/update/delete rows in a PostgreSQL table via any connection and those changes will propagate **immediately** to a browser over a simple ReST interface, to a very simple UI.
 
-You may notice the use of uWSGI later on but that it is not in the title here. The uWSGI is somewhat interchangeable in this architecture, so it doesn't get included. Be advised, however: In a pure Python WSGI environment, all requests are synchronous. uWSGI helps us currently by running our uWSGI stack with one thread per request, but in the future, we can accomplish many asynchronous requests per thread, greatly increasing the number of concurrent clients we can service.
+This is just an evolving reference implementation of the goal above with an architecture that avoids cultural lock-in (Django, RoR, meteor, etc.).
+
+You may notice the use of uWSGI later on but that it is not in the title here. The uWSGI is somewhat interchangeable in this architecture, so it doesn't get included. Be advised, however: In a pure Python WSGI environment, all requests are synchronous. uWSGI helps us currently by running our uWSGI stack with one thread per request, but in the future, we can accomplish many asynchronous requests per thread by using `uwsgi.wait_fd_read`, vastly increasing the number of concurrent clients we can service.
 
 ## Features:
 
@@ -18,12 +20,11 @@ You may notice the use of uWSGI later on but that it is not in the title here. T
 ## TODO/Known Issues:
 
 * Replicate the model client-side for more sensible client behavior
-* Make the web interface asynchronous with uwsgi wait_fd_read
+* Make the web interface asynchronous with `uwsgi.wait_fd_read`
 * Make the database interface asynchronous/scale better:
     * Use fewer database connections and mux them similar to the way the browser muxes one connection for its notify channel to the server
 
-This configuration is most strongly tested on Debian 8. It is highly
-recommended that be the distribution to use.
+This configuration is most strongly tested on Debian 8. It is highly recommended that be the distribution to use.
 
 ## Design
 
